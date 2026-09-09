@@ -1,11 +1,13 @@
-<script setup lang="ts"></script>
-
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <el-button type="primary" @click="handleClick">主要按钮</el-button>
+  <el-input v-model="text" placeholder="请输入" />
 </template>
 
-<style scoped></style>
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const text = ref('')
+function handleClick() {
+  ElMessage.success('点击成功！')
+}
+</script>
