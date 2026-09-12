@@ -4,7 +4,10 @@ const backendRoutes = [
     path: '/backend',
     component: () => import('@/components/BackendLayout.vue'),
     children: [
-      
+      {
+        path: "dashboard",
+        component: () => import('@/views/dashboard.vue')
+      }
     ],
   },
 ]
