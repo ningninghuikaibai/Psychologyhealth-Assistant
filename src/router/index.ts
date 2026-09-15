@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 const backendRoutes = [
   {
-    path: '/backend',
+    path: '/back',
     component: () => import('@/components/BackendLayout.vue'),
     children: [
       {
         path: "dashboard",
-        component: () => import('@/views/dashboard.vue')
+        component: () => import('@/views/Dashboard.vue')
       }
     ],
   },

@@ -19,5 +19,13 @@ export default defineConfigWithVueTs(
   ...pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
 
+  {
+    name: 'app/custom-rules',
+    rules: {
+      // 允许单词命名组件（如 Dashboard.vue、Sidebar.vue）
+      'vue/multi-word-component-names': 'off',
+    },
+  },
+
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
 )

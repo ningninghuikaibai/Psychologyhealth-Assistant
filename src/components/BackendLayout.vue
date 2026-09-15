@@ -1,9 +1,9 @@
 <template>
     <div class="backend-layout">
         <el-container>
-            <Sidebar />
+             <SideBar />
             <el-container>
-                <Navbar />
+                <NavBar />
                 <el-main>
                     <router-view></router-view>
                 </el-main>
@@ -12,8 +12,8 @@
     </div>
 </template>
 <script setup lang="ts">
-import Sidebar from './Sidebar.vue'
-import Navbar from './Navbar.vue'
+import SideBar from '@/components/SideBar.vue'
+import NavBar from '@/components/NavBar.vue'
 </script>
 <style lang="scss" scoped>
 .backend-layout {
