@@ -1,3 +1,3 @@
 <template>
-    <div>控制台</div>
+    <div>数据分析</div>
 </template>

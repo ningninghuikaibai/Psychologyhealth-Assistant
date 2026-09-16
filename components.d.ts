@@ -23,9 +23,11 @@ declare module 'vue' {
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    Navbar: typeof import('./src/components/Navbar.vue')['default']
+    NavBar: typeof import('./src/components/NavBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Navbar: typeof import('./src/components/Navbar.vue')['default']
     Sidebar: typeof import('./src/components/Sidebar.vue')['default']
+    SideBar: typeof import('./src/components/SideBar.vue')['default']
   }
 }
