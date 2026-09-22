@@ -1,21 +1,29 @@
 <template>
-  <el-aside class="layout-sidebar" width="264px">
+  <el-aside class="layout-sidebar" :width="collapsed ? '64px' : '264px'">
     <!-- 顶部品牌区 -->
     <div class="brand">
       <el-image :src="logoUrl" alt="logo" class="brand-image" />
-      <div class="info-card">
+      <div v-show="!collapsed" class="info-card">
         <h1 class="brand-title">心理健康AI助手</h1>
         <p class="brand-subtitle">管理后台</p>
       </div>
     </div>
 
-    <!-- 菜单区：flex:1 占满剩余高度 -->
-    <el-menu :default-active="route.path" router class="sidebar-menu">
+    <!-- 菜单区：使用 el-menu 内置 collapse -->
+    <el-menu
+      :default-active="route.path"
+      router
+      :collapse="collapsed"
+      :collapse-transition="true"
+      class="sidebar-menu"
+    >
       <el-menu-item v-for="item in menuItems" :key="item.path" :index="item.path">
         <el-icon>
           <component :is="item.icon" />
         </el-icon>
-        <span>{{ item.title }}</span>
+        <template #title>
+          <span>{{ item.title }}</span>
+        </template>
       </el-menu-item>
     </el-menu>
   </el-aside>
@@ -24,6 +32,8 @@
 import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import logoUrl from "@/assets/images/机器人.png";
+
+defineProps<{ collapsed: boolean }>();
 
 interface MenuItem {
   path: string;
@@ -34,7 +44,6 @@ interface MenuItem {
 const route = useRoute();
 const router = useRouter();
 
-// 从路由配置中读取 /back 的子路由，渲染菜单
 const menuItems = computed<MenuItem[]>(() => {
   const backendRoute = router.options.routes.find((r) => r.path === "/back");
   return (backendRoute?.children ?? []).map((child) => ({
@@ -52,6 +61,7 @@ const menuItems = computed<MenuItem[]>(() => {
   height: 100vh;
   background-color: #fff;
   border-right: 1px solid var(--el-border-color-light);
+  transition: width 0.3s ease;
 }
 
 .brand {
@@ -61,6 +71,7 @@ const menuItems = computed<MenuItem[]>(() => {
   gap: 12px;
   padding: 16px 20px;
   border-bottom: 1px solid var(--el-border-color-light);
+  overflow: hidden;
 
   .brand-image {
     width: 44px;
@@ -71,6 +82,7 @@ const menuItems = computed<MenuItem[]>(() => {
   .info-card {
     display: flex;
     flex-direction: column;
+    white-space: nowrap;
   }
 
   .brand-title {
@@ -92,8 +104,9 @@ const menuItems = computed<MenuItem[]>(() => {
 .sidebar-menu {
   flex: 1;
   border-right: none;
-  padding: 8px 16px;
+  padding: 8px 12px;
   overflow-y: auto;
+  overflow-x: hidden;
 
   :deep(.el-menu-item) {
     height: 56px;
@@ -107,10 +120,12 @@ const menuItems = computed<MenuItem[]>(() => {
       font-size: 18px;
       color: var(--el-text-color-regular);
     }
+
     &:not(.is-active):hover {
       background-color: var(--el-fill-color-light);
       color: var(--el-text-color-primary);
       font-weight: 600;
+
       .el-icon {
         color: var(--el-text-color-regular);
       }
