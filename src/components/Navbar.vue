@@ -9,8 +9,8 @@
       <span class="page-title">{{ currentTitle }}</span>
     </div>
 
-    <!-- 右侧：用户头像 + 下拉 -->
-    <el-dropdown trigger="hover" class="user-dropdown">
+    <!-- trigger默认为hover -->
+    <el-dropdown class="user-dropdown">
       <div class="user-info">
         <el-avatar :src="userAvatar" :size="36" />
         <span class="user-name">用户</span>

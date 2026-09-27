@@ -38,4 +38,13 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  server: {
+    proxy: {
+      // 后端拒绝跨域预检请求，开发环境通过代理绕过 CORS
+      '/api': {
+        target: 'http://159.75.169.224:1235',
+        changeOrigin: true,
+      },
+    },
+  },
 })
