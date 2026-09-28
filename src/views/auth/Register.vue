@@ -99,11 +99,11 @@ async function handleRegister() {
       gender: 1,
       userType: 1,
     });
-    ElMessage.success("注册成功，2 秒后跳转登录页");
+    ElMessage.success("注册成功");
     // 延时跳转，给用户留出看到提示的时间；期间保持 loading 防止重复提交
     setTimeout(() => {
       router.push("/auth/login");
-    }, 2000);
+    }, 1000);
   } catch {
     // 失败提示由 request 拦截器统一弹出（后端 msg / 网络异常）
     loading.value = false;

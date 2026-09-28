@@ -28,7 +28,7 @@ const backendRoutes = [
     children: [
       {
         path: "dashboard",
-        component: () => import("@/views/Dashboard.vue"),
+        component: () => import("@/views/admin/Dashboard.vue"),
         meta: {
           title: "数据分析",
           icon: "PieChart",
@@ -36,7 +36,7 @@ const backendRoutes = [
       },
       {
         path: "knowledge",
-        component: () => import("@/views/Knowledge.vue"),
+        component: () => import("@/views/admin/Knowledge.vue"),
         meta: {
           title: "知识文章",
           icon: "ChatLineSquare",
@@ -44,7 +44,7 @@ const backendRoutes = [
       },
       {
         path: "consultations",
-        component: () => import("@/views/Consultations.vue"),
+        component: () => import("@/views/admin/Consultations.vue"),
         meta: {
           title: "咨询记录",
           icon: "Message",
@@ -52,7 +52,7 @@ const backendRoutes = [
       },
       {
         path: "emotional",
-        component: () => import("@/views/Emotional.vue"),
+        component: () => import("@/views/admin/Emotional.vue"),
         meta: {
           title: "情绪日志",
           icon: "User",
