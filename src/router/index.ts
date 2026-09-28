@@ -1,16 +1,23 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-// 登录 / 注册（独立于管理端布局）
+// 登录 / 注册（BrandPanel 为 auth 布局：左侧品牌区 + 右侧表单 router-view）
 const authRoutes = [
   {
-    path: "/auth/login",
-    component: () => import("@/views/auth/Login.vue"),
-    meta: { title: "登录" },
-  },
-  {
-    path: "/auth/register",
-    component: () => import("@/views/auth/Register.vue"),
-    meta: { title: "注册" },
+    path: "/auth",
+    component: () => import("@/components/BrandPanel.vue"),
+    redirect: "/auth/login",
+    children: [
+      {
+        path: "login",
+        component: () => import("@/views/auth/Login.vue"),
+        meta: { title: "登录" },
+      },
+      {
+        path: "register",
+        component: () => import("@/views/auth/Register.vue"),
+        meta: { title: "注册" },
+      },
+    ],
   },
 ];
 

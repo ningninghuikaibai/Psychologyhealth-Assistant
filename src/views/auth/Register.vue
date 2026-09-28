@@ -1,54 +1,42 @@
 <template>
-  <div class="auth-page">
-    <!-- 左侧品牌区（共用组件） -->
-    <BrandPanel />
+  <!-- 本页作为 BrandPanel 布局右侧 router-view 的子路由，只渲染表单卡片 -->
+  <div class="form-card">
+    <router-link to="/auth/login" class="back-link">
+      <el-icon><ArrowLeft /></el-icon>
+      <span>返回登录</span>
+    </router-link>
+    <h2 class="form-title">创建您的账户</h2>
+    <p class="form-subtitle">请填写注册信息</p>
 
-    <!-- 右侧注册表单 -->
-    <div class="form-panel">
-      <div class="form-card">
-        <router-link to="/auth/login" class="back-link">
-          <el-icon><ArrowLeft /></el-icon>
-          <span>返回登录</span>
-        </router-link>
-        <h2 class="form-title">创建您的账户</h2>
-        <p class="form-subtitle">请填写注册信息</p>
-
-        <el-form ref="formRef" :model="form" :rules="rules" label-position="top" size="large">
-          <el-form-item label="用户名" prop="username">
-            <el-input v-model="form.username" placeholder="请输入用户名" />
-          </el-form-item>
-          <el-form-item label="邮箱" prop="email">
-            <el-input v-model="form.email" placeholder="请输入邮箱" />
-          </el-form-item>
-          <el-form-item label="昵称" prop="nickname">
-            <el-input v-model="form.nickname" placeholder="请输入昵称（可选）" />
-          </el-form-item>
-          <el-form-item label="手机号" prop="phone">
-            <el-input v-model="form.phone" placeholder="请输入手机号（可选）" />
-          </el-form-item>
-          <el-form-item label="密码" prop="password">
-            <el-input
-              v-model="form.password"
-              type="password"
-              placeholder="请输入密码"
-              show-password
-            />
-          </el-form-item>
-          <el-form-item label="确认密码" prop="confirmPassword">
-            <el-input
-              v-model="form.confirmPassword"
-              type="password"
-              placeholder="请再次输入密码"
-              show-password
-              @keyup.enter="handleRegister"
-            />
-          </el-form-item>
-          <el-button type="primary" class="submit-btn" :loading="loading" @click="handleRegister">
-            注 册
-          </el-button>
-        </el-form>
-      </div>
-    </div>
+    <el-form ref="formRef" :model="form" :rules="rules" label-position="top" size="large">
+      <el-form-item label="用户名" prop="username">
+        <el-input v-model="form.username" placeholder="请输入用户名" />
+      </el-form-item>
+      <el-form-item label="邮箱" prop="email">
+        <el-input v-model="form.email" placeholder="请输入邮箱" />
+      </el-form-item>
+      <el-form-item label="昵称" prop="nickname">
+        <el-input v-model="form.nickname" placeholder="请输入昵称（可选）" />
+      </el-form-item>
+      <el-form-item label="手机号" prop="phone">
+        <el-input v-model="form.phone" placeholder="请输入手机号（可选）" />
+      </el-form-item>
+      <el-form-item label="密码" prop="password">
+        <el-input v-model="form.password" type="password" placeholder="请输入密码" show-password />
+      </el-form-item>
+      <el-form-item label="确认密码" prop="confirmPassword">
+        <el-input
+          v-model="form.confirmPassword"
+          type="password"
+          placeholder="请再次输入密码"
+          show-password
+          @keyup.enter="handleRegister"
+        />
+      </el-form-item>
+      <el-button type="primary" class="submit-btn" :loading="loading" @click="handleRegister">
+        注 册
+      </el-button>
+    </el-form>
   </div>
 </template>
 
@@ -56,7 +44,6 @@
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import type { FormInstance, FormRules } from "element-plus";
-import BrandPanel from "@/components/BrandPanel.vue";
 import { register } from "@/api/auth";
 
 const router = useRouter();
@@ -125,23 +112,6 @@ async function handleRegister() {
 </script>
 
 <style lang="scss" scoped>
-.auth-page {
-  display: flex;
-  min-height: 100vh;
-}
-
-.form-panel {
-  flex: 1;
-  background:
-    radial-gradient(circle at 20% 20%, rgb(252 213 226 / 55%), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgb(191 219 254 / 55%), transparent 55%),
-    linear-gradient(135deg, #fdf3f6 0%, #f3f0fa 50%, #eef5fc 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 24px;
-}
-
 .form-card {
   width: 384px;
   max-height: 92vh;
