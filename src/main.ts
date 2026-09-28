@@ -3,6 +3,12 @@ import { createPinia } from 'pinia'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import "./style.css"
 
+// 函数式 API（经 AutoImport imports 映射引入）不会自动加载样式，需手动引入
+import "element-plus/es/components/message/style/css"
+import "element-plus/es/components/message-box/style/css"
+import "element-plus/es/components/notification/style/css"
+import "element-plus/es/components/loading/style/css"
+
 import App from './App.vue'
 import router from './router'
 

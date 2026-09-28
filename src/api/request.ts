@@ -33,8 +33,12 @@ request.interceptors.response.use(
     return res.data !== undefined ? res.data : res;
   },
   (error) => {
-    ElMessage.error(error.message ?? "网络异常");
-    return Promise.reject(error);
+    // HTTP 层错误（4xx/5xx）时优先取后端返回的中文 msg，避免出现英文状态码提示
+    const data = error.response?.data;
+    const bizMsg = data && typeof data === "object" ? (data.msg ?? data.message) : undefined;
+    const msg = bizMsg ?? error.message ?? "网络异常";
+    ElMessage.error(msg);
+    return Promise.reject(new Error(msg));
   },
 );
 

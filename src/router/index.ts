@@ -1,4 +1,19 @@
 import { createRouter, createWebHistory } from "vue-router";
+
+// 登录 / 注册（独立于管理端布局）
+const authRoutes = [
+  {
+    path: "/auth/login",
+    component: () => import("@/views/auth/Login.vue"),
+    meta: { title: "登录" },
+  },
+  {
+    path: "/auth/register",
+    component: () => import("@/views/auth/Register.vue"),
+    meta: { title: "注册" },
+  },
+];
+
 const backendRoutes = [
   {
     path: "/back",
@@ -42,6 +57,6 @@ const backendRoutes = [
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: backendRoutes,
+  routes: [...authRoutes, ...backendRoutes],
 });
 export default router;
